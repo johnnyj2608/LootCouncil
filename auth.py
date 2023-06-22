@@ -1,0 +1,41 @@
+import requests
+
+cookies = {
+    '_pbjs_userid_consent_data': '3524755945110770',
+    'na-unifiedid': '%7B%22TDID%22%3A%22cb5fceb2-1413-46f6-a00d-8655a477ce4c%22%2C%22TDID_LOOKUP%22%3A%22TRUE%22%2C%22TDID_CREATED_AT%22%3A%222023-04-30T20%3A46%3A34%22%7D',
+    'raidGroupFilter': '',
+    '_sharedid': '8431f58c-39cb-47cf-beff-e0a2ff1c5b60',
+    'closedAddonPrompt': '1',
+    '_gid': 'GA1.2.423834584.1687305555',
+    'remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d': 'eyJpdiI6ImY3cTVNZzJEVEErRVFmbVBQa1hmZmc9PSIsInZhbHVlIjoiVUdjbUV2Q0tTTjlJcDdkSnFSREZFT0t0eU9MU0VQNmczZk9Ecm1hZmxQaWxvdWdxTDJld1BjR0ZGcVYreUw0TGwrN08xeEN6UDBmV0xMRk5zMUF6SzQ5S0hodG5Ybk5RcWlRQUVnZnRFMmxDYWxQbG1nRHRwb1AzTERFTVJNdkNpRlozZStkYzNyR3d4c2pZSG1HRkZ3PT0iLCJtYWMiOiIxMWM0ZjE3M2EwMWQzNmEyOGEzYmE2YzAyMTc2ZjNiNTI2M2ZiMmJjMTZmMzI1ZjYyYTUwZmRlNDU3MzM5YzVlIiwidGFnIjoiIn0%3D',
+    'cto_bundle': 'AxIka183YjhQMEFJQXVxU1dSQ1N1MnBnc2RLTXYwUlZvY1l2byUyQjk5ckhEWFdqYjNRd3E2bHhZdCUyRk9pV204TjlxNnRMUHlxYU05eUJrckNBNVRENUIlMkZ4SU9NTnF5Q3FHbDZFbndOSG0yVW55SjVFc2tZQ2UxaHZMQkElMkYwT2R6cmtwUGp2UjRMZVQ5TGMlMkYwc01MbTkxTWJhaXJRJTNEJTNE',
+    'cto_bidid': '7LoMn182V2Z5ejRzZTBod1ZiU1cza2VjdGY5SmJPaEZZVUZpJTJGMFdmejlvdjFFU0pVVk0lMkJ4NlZmelE5cTM1SEJvaVhSMm5yRmc3bHBBZXlNNSUyQk1xRXJzYUc5VHB3emFIdWtZM3NnSm1kbktJcWNPQmFVRkxHTlhEYk8lMkJwJTJGNHR3JTJCJTJGaWtR',
+    'cto_bundle': 'xPK94l83YjhQMEFJQXVxU1dSQ1N1MnBnc2RPTFpCbWswQkVPaW5vcmJjRktzdU9IaiUyQnlNJTJGcnVyR2xCWGslMkZOdklXSE9HR0d0SkRUNmJmdGJFZUViY2Rrd1dHSUk0SXNaOXBOMjJ4cjRyUDNHZzV6blRiaEZZZU1HbXc3UVNDSkNKeEpIUm03TUpibUslMkZWNW13VlUzWHBlQzhzUSUzRCUzRA',
+    '_gat_gtag_UA_173732351_1': '1',
+    'XSRF-TOKEN': 'eyJpdiI6IjlIMExQamRFZTZOMzFmUS9GSDZZbGc9PSIsInZhbHVlIjoic1JwWmQvMTNYcTI2RVhCYzcxU2wwa0ZZclVSSXZuclFZVDU0UEczKzdLY2h6Mm42SHY4bmxySU1tZmdjM3ZrZWpYR045dVpZRWs5M2xpZUp4WVRRZGlvODhCZVBCa0dsZ2NlTmR4WDZqamZ5Q2ZXc2FkeEtuMlhCOFhOYmhzc2oiLCJtYWMiOiIzZmQ5YTkzODY1ZTRlOTc4YjY1NDZjYTRjNDA5MDJmOTQzMzg0ZDNhNjdiZjkwNjlmZWI2NjAzYjJlOGM3ZDBiIiwidGFnIjoiIn0%3D',
+    'thats_my_bis_session': 'eyJpdiI6IkgvV3JqL2syYnlKZDRlTXpGOFhQOWc9PSIsInZhbHVlIjoiNi9NaE01dHVENEZsQU1FWjJRcFRVc2NpQW9od2pHY2lXOVJmdEFiWER0VVpaMzdkcnNnZ1hsOWhCRUhmOXQvY0FNQzZyNUt3enl0aElwczVHSndOQU9iL1JJOXZ0ZmxVaythRmRZMUJnZXV4dGd1U1Z2cTNtS0Vwdmxid1E3NVMiLCJtYWMiOiIxMjc1NzZhYjY3NzM4YTAxNDU0NDFjOTliYTJmZTZhMWNlNWIzNDQyZjU5ZjA1ZGZhMWY4OWNhNjBjMWYyOGFhIiwidGFnIjoiIn0%3D',
+    '_ga_CJF7R0JQMV': 'GS1.1.1687407438.12.1.1687408566.17.0.0',
+    '_ga': 'GA1.2.1613304969.1685479571',
+}
+
+headers = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Cache-Control': 'max-age=0',
+    'Connection': 'keep-alive',
+    'Cookie': '_pbjs_userid_consent_data=3524755945110770; na-unifiedid=%7B%22TDID%22%3A%22cb5fceb2-1413-46f6-a00d-8655a477ce4c%22%2C%22TDID_LOOKUP%22%3A%22TRUE%22%2C%22TDID_CREATED_AT%22%3A%222023-04-30T20%3A46%3A34%22%7D; raidGroupFilter=; _sharedid=8431f58c-39cb-47cf-beff-e0a2ff1c5b60; closedAddonPrompt=1; _gid=GA1.2.423834584.1687305555; remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d=eyJpdiI6ImY3cTVNZzJEVEErRVFmbVBQa1hmZmc9PSIsInZhbHVlIjoiVUdjbUV2Q0tTTjlJcDdkSnFSREZFT0t0eU9MU0VQNmczZk9Ecm1hZmxQaWxvdWdxTDJld1BjR0ZGcVYreUw0TGwrN08xeEN6UDBmV0xMRk5zMUF6SzQ5S0hodG5Ybk5RcWlRQUVnZnRFMmxDYWxQbG1nRHRwb1AzTERFTVJNdkNpRlozZStkYzNyR3d4c2pZSG1HRkZ3PT0iLCJtYWMiOiIxMWM0ZjE3M2EwMWQzNmEyOGEzYmE2YzAyMTc2ZjNiNTI2M2ZiMmJjMTZmMzI1ZjYyYTUwZmRlNDU3MzM5YzVlIiwidGFnIjoiIn0%3D; cto_bundle=AxIka183YjhQMEFJQXVxU1dSQ1N1MnBnc2RLTXYwUlZvY1l2byUyQjk5ckhEWFdqYjNRd3E2bHhZdCUyRk9pV204TjlxNnRMUHlxYU05eUJrckNBNVRENUIlMkZ4SU9NTnF5Q3FHbDZFbndOSG0yVW55SjVFc2tZQ2UxaHZMQkElMkYwT2R6cmtwUGp2UjRMZVQ5TGMlMkYwc01MbTkxTWJhaXJRJTNEJTNE; cto_bidid=7LoMn182V2Z5ejRzZTBod1ZiU1cza2VjdGY5SmJPaEZZVUZpJTJGMFdmejlvdjFFU0pVVk0lMkJ4NlZmelE5cTM1SEJvaVhSMm5yRmc3bHBBZXlNNSUyQk1xRXJzYUc5VHB3emFIdWtZM3NnSm1kbktJcWNPQmFVRkxHTlhEYk8lMkJwJTJGNHR3JTJCJTJGaWtR; cto_bundle=xPK94l83YjhQMEFJQXVxU1dSQ1N1MnBnc2RPTFpCbWswQkVPaW5vcmJjRktzdU9IaiUyQnlNJTJGcnVyR2xCWGslMkZOdklXSE9HR0d0SkRUNmJmdGJFZUViY2Rrd1dHSUk0SXNaOXBOMjJ4cjRyUDNHZzV6blRiaEZZZU1HbXc3UVNDSkNKeEpIUm03TUpibUslMkZWNW13VlUzWHBlQzhzUSUzRCUzRA; _gat_gtag_UA_173732351_1=1; XSRF-TOKEN=eyJpdiI6IjlIMExQamRFZTZOMzFmUS9GSDZZbGc9PSIsInZhbHVlIjoic1JwWmQvMTNYcTI2RVhCYzcxU2wwa0ZZclVSSXZuclFZVDU0UEczKzdLY2h6Mm42SHY4bmxySU1tZmdjM3ZrZWpYR045dVpZRWs5M2xpZUp4WVRRZGlvODhCZVBCa0dsZ2NlTmR4WDZqamZ5Q2ZXc2FkeEtuMlhCOFhOYmhzc2oiLCJtYWMiOiIzZmQ5YTkzODY1ZTRlOTc4YjY1NDZjYTRjNDA5MDJmOTQzMzg0ZDNhNjdiZjkwNjlmZWI2NjAzYjJlOGM3ZDBiIiwidGFnIjoiIn0%3D; thats_my_bis_session=eyJpdiI6IkgvV3JqL2syYnlKZDRlTXpGOFhQOWc9PSIsInZhbHVlIjoiNi9NaE01dHVENEZsQU1FWjJRcFRVc2NpQW9od2pHY2lXOVJmdEFiWER0VVpaMzdkcnNnZ1hsOWhCRUhmOXQvY0FNQzZyNUt3enl0aElwczVHSndOQU9iL1JJOXZ0ZmxVaythRmRZMUJnZXV4dGd1U1Z2cTNtS0Vwdmxid1E3NVMiLCJtYWMiOiIxMjc1NzZhYjY3NzM4YTAxNDU0NDFjOTliYTJmZTZhMWNlNWIzNDQyZjU5ZjA1ZGZhMWY4OWNhNjBjMWYyOGFhIiwidGFnIjoiIn0%3D; _ga_CJF7R0JQMV=GS1.1.1687407438.12.1.1687408566.17.0.0; _ga=GA1.2.1613304969.1685479571',
+    'Referer': 'https://thatsmybis.com/15596/raid-team-two/roster',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-User': '?1',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+    'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+}
+
+def curl(link):
+    response = requests.get(link, cookies=cookies, headers=headers)
+    return response.text
