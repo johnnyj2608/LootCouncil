@@ -2,8 +2,8 @@ import pandas as pd
 import pprint as pp
 from bs4 import BeautifulSoup
 from io import StringIO
-from clientkey import clientkey
 from auth import curl
+from wcl import get_names
 
 def main():
     sheet = '1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q'
@@ -39,14 +39,14 @@ def main():
 
     # Get raider name and class
     response = curl(wishlist)
-    csvStringIO = StringIO(response)
+    csvStringIO = StringIO(response.text)
     df = pd.read_csv(csvStringIO, sep=",")
     df = df[['character_name', 'character_class']].drop_duplicates()
     raiders = df.set_index('character_name').T.to_dict('list')
 
     # Get raider received count
     response = curl(received)
-    csvStringIO = StringIO(response)
+    csvStringIO = StringIO(response.text)
     df = pd.read_csv(csvStringIO, sep=",")
     df = df[['character_name']]
     df = df.groupby(df.columns.tolist(), as_index=False).size()
@@ -57,8 +57,7 @@ def main():
         except:
             raiders[key].append(0)
 
-    # Scrape WCL and intersect names. Then get max(median/bracket) perf
-    print(clientkey())
+    print(get_names(code='W6a8khwVyx1XDczd'))
 
 if __name__ == "__main__":
     main()
