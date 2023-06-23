@@ -6,6 +6,17 @@ from auth import curl
 from wcl import get_names
 from wcl import get_perf
 
+def perf_score(perf):
+    if perf > 95:
+        return 0
+    if perf > 75:
+        return 1
+    if perf > 50:
+        return 2
+    if perf > 25:
+        return 3
+    return 4
+
 def main():
     sheet = '1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q'
 
@@ -43,8 +54,8 @@ def main():
     response = curl(tmb)
     csvStringIO = StringIO(response.text)
     df = pd.read_csv(csvStringIO, sep=",")
-    wl = prio = df[df['type']=='wishlist']
-    rd = df[df['type']=='received']
+    wl = prio = df[(df['type']=='wishlist') & (df['received_at'].isnull())]
+    rd = df[(df['type']=='received') & (df['received_at'].notnull())]
 
     # Gets name and class of character
     wl = wl[['character_name', 'character_class']].drop_duplicates()
@@ -60,26 +71,28 @@ def main():
             raiders[key]['Received'] = temp[key]
         except:
             raiders[key]['Received'] = 0
+    # Remove entries in wishlist
 
-    # Intersect today's raiders and get performance
-    report_names = get_names(code='bPpcTmQrzGXdMxA6')
-    raiders = {k: raiders[k] for k in raiders.keys() & report_names}
+    # Intersect report's attendance with raider dict and get performance
+    report_names = set(get_names(code='bPpcTmQrzGXdMxA6'))
+    delete_keys = []
     for key in raiders:
-        raiders[key].update(get_perf(name=key))
+        if key in report_names:
+            raiders[key].update(get_perf(name=key))
+        else:
+            delete_keys.append(key)
+            prio = prio[prio['character_name'] != key]
+    for key in delete_keys:
+        del raiders[key]
 
-    # Need to ensure akka's isn't appended. Why is it float now?
     prio = {k: f.groupby('character_name')['sort_order'].apply(list).to_dict()
      for k, f in prio.groupby('item_name')}
-    
-    #pp.pprint(raiders)
-    #pp.pprint(prio)
-    #return
 
     for key in prio:
         score = float('inf')
         res = ''
         for name in prio[key]:
-            cur = prio[key][name][0]
+            cur = int(prio[key][name][0])    # sort order
             cur += raiders[name]['Received']
             cur += perf_score(raiders[name]['Best'])
             cur += perf_score(raiders[name]['Med'])
@@ -87,19 +100,8 @@ def main():
             if cur < score:
                 score = cur
                 res = name
-        prio[key] = res
+        prio[key] = (res, 'Rank: '+str(score))
     pp.pprint(prio)
-
-def perf_score(perf):
-    if perf > 95:
-        return 1
-    if perf > 75:
-        return 2
-    if perf > 50:
-        return 3
-    if perf > 25:
-        return 4
-    return 5
 
 if __name__ == "__main__":
     main()
