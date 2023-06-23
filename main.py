@@ -38,15 +38,20 @@ def main():
     wishlist = 'https://thatsmybis.com/15596/raid-team-two/export/loot/html/wishlist'
     received = 'https://thatsmybis.com/15596/raid-team-two/export/loot/html/received'
 
-    # Get raider name and class
+    # Get raider name, class, and sort order
     response = curl(wishlist)
     csvStringIO = StringIO(response.text)
     df = pd.read_csv(csvStringIO, sep=",")
+    df = df[df['received_at'].isnull()]
+
+    prio = {k: f.groupby('character_name')['sort_order'].apply(list).to_dict()
+     for k, f in df.groupby('item_name')}
+
     df = df[['character_name', 'character_class']].drop_duplicates()
     df = df.rename(columns={'character_class': 'Class'})
     raiders = df.set_index('character_name').T.to_dict()
 
-    # Get raider received count
+    # Get raider received count (Unnecessary? Just count entries if NaN?)
     response = curl(received)
     csvStringIO = StringIO(response.text)
     df = pd.read_csv(csvStringIO, sep=",")
@@ -65,7 +70,33 @@ def main():
     for key in raiders:
         raiders[key].update(get_perf(name=key))
 
-    pp.pprint(raiders)
+    # filter wishlist if didn't show up for raid
+
+    for key in prio:
+        score = float('inf')
+        res = ''
+        for name in prio[key]:
+            cur = prio[key][name][0]
+            cur += raiders[name]['Received']
+            cur += wcl_perf(raiders[name]['Best'])
+            cur += wcl_perf(raiders[name]['Med'])
+            # parse items prio here
+            if cur < score:
+                score = cur
+                res = name
+        prio[key] = res
+    print(prio)
+
+def wcl_perf(perf):
+    if perf > 95:
+        return 1
+    if perf > 75:
+        return 2
+    if perf > 50:
+        return 3
+    if perf > 25:
+        return 4
+    return 5
 
 if __name__ == "__main__":
     main()

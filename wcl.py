@@ -44,10 +44,10 @@ def get_names(**kwargs):
 
 report_names = get_names(code='bPpcTmQrzGXdMxA6')
 
-charQuery = """query($name:String) {
+charQuery = """query($name:String, $byBracket:Boolean) {
                 characterData{
                     character(name:$name, serverSlug: "Mankrik", serverRegion: "US") {
-                        zoneRankings(zoneID:1017)
+                        zoneRankings(zoneID:1017, byBracket:$byBracket)
                     }
                 }
             }"""
