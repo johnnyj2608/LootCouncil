@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from io import StringIO
 from auth import curl
 from wcl import get_names
+from wcl import get_perf
 
 def main():
     sheet = '1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q'
@@ -42,7 +43,8 @@ def main():
     csvStringIO = StringIO(response.text)
     df = pd.read_csv(csvStringIO, sep=",")
     df = df[['character_name', 'character_class']].drop_duplicates()
-    raiders = df.set_index('character_name').T.to_dict('list')
+    df = df.rename(columns={'character_class': 'Class'})
+    raiders = df.set_index('character_name').T.to_dict()
 
     # Get raider received count
     response = curl(received)
@@ -53,11 +55,17 @@ def main():
     temp = df.set_index('character_name').to_dict()['size']
     for key in raiders:
         try:
-            raiders[key].append(temp[key])
+            raiders[key]['Received'] = temp[key]
         except:
-            raiders[key].append(0)
+            raiders[key]['Received'] = 0
 
-    print(get_names(code='W6a8khwVyx1XDczd'))
+    # Intersect today's raiders and get performance
+    report_names = get_names(code='bPpcTmQrzGXdMxA6')
+    raiders = {k: raiders[k] for k in report_names if k in raiders}
+    for key in raiders:
+        raiders[key].update(get_perf(name=key))
+
+    pp.pprint(raiders)
 
 if __name__ == "__main__":
     main()

@@ -1,9 +1,9 @@
 import requests
-from client import clientID
-from client import clientSecret
+from auth import clientID
+from auth import clientSecret
 
 tokenURL = "https://www.warcraftlogs.com/oauth/token"
-publicURL = "https://www.warcraftlogs.com/api/v2/client"
+publicURL = "https://classic.warcraftlogs.com/api/v2/client"
 
 def access_token():
     data={"grant_type":"client_credentials"}
@@ -15,21 +15,17 @@ def access_token():
 def retrieve_headers() -> dict[str, str]:
     return {"Authorization": f"Bearer {access_token()}"}
 
-query = """query($code:String){
-            reportData{
-                report(code:$code){
-                    masterData(translate: true) {
-                        actors(type: "Player") {
-                        name
-                        id
+reportQuery = """query($code:String){
+                reportData{
+                    report(code:$code){
+                        masterData(translate: true) {
+                            actors(type: "Player") {
+                                name
+                            }
                         }
                     }
-                    fights(killType: Encounters) {
-                        friendlyPlayers
-                    }
                 }
-            }
-        }"""
+            }"""
 
 def get_data(query:str, **kwargs):
     data = {"query":query, "variables": kwargs}
@@ -40,8 +36,23 @@ def get_data(query:str, **kwargs):
 
 
 def get_names(**kwargs):
-    response = get_data(query, **kwargs)['data']['reportData']['report']['masterData']
+    response = get_data(reportQuery, **kwargs)['data']['reportData']['report']['masterData']
     names = []
     for name in response['actors']:
         names.append(name['name'])
     return names
+
+report_names = get_names(code='bPpcTmQrzGXdMxA6')
+
+charQuery = """query($name:String) {
+                characterData{
+                    character(name:$name, serverSlug: "Mankrik", serverRegion: "US") {
+                        zoneRankings(zoneID:1017)
+                    }
+                }
+            }"""
+
+def get_perf(**kwargs):
+    response = get_data(charQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
+    perfs = {'Best':int(response['bestPerformanceAverage']), 'Med':int(response['medianPerformanceAverage'])}
+    return perfs
