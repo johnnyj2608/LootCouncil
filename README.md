@@ -14,8 +14,8 @@ Clone down this repository. You will need `VS Code` installed globally on your m
 ### Docker (Optional):
 
 1. docker -v
-2. docker build -t `image_name` .
-3. docker run -ti `image_name`    
+2. docker build -t {image_name} .
+3. docker run -ti {image_name}    
 
 ## Reflection
 
