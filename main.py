@@ -1,8 +1,8 @@
 import pandas as pd
 import pprint as pp
+import wcl
 from io import StringIO
 from auth import curl
-import wcl
 
 def main():
     items = {}
