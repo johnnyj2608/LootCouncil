@@ -43,6 +43,7 @@ Run main.py. User input will be required.
 <img width="206" alt="Screen Shot 2023-06-24 at 3 00 34 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/4daa78d1-83a7-4caf-b9a1-172cddcd3043">
 
 You can either insert either the code URL or the entire report URL. The end result will be outputted with the pretty print library
+
 <img width="590" alt="result" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/1cd5231f-9acd-4a45-b898-238ed6673701">
 
 ### Docker (Optional):
