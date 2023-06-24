@@ -40,7 +40,7 @@ Run main.py. User input will be required.
 
 
 Paste a Warcraftlogs report in order to intersect the players eligible for loot and wishlists. You can either insert either the code URL or the entire report URL. The end result will be printed with pretty print
-Output: <img width="590" alt="result" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/1cd5231f-9acd-4a45-b898-238ed6673701">
+<img width="590" alt="result" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/1cd5231f-9acd-4a45-b898-238ed6673701">
 
 ### Docker (Optional):
 
