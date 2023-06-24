@@ -37,4 +37,8 @@ headers = {
 }
 
 def curl(link):
-    return requests.get(link, cookies=cookies, headers=headers)
+    res = requests.get(link, cookies=cookies, headers=headers)
+    if res.status_code == 200:
+        return res
+    else:
+        return 3

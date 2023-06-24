@@ -54,7 +54,10 @@ def get_names(**kwargs):
     :param report: the report code
     :return: all names in the WCL report
     """ 
-    response = get_data(reportQuery, **kwargs)['data']['reportData']['report']['masterData']
+    try:
+        response = get_data(reportQuery, **kwargs)['data']['reportData']['report']['masterData']
+    except:
+        return 0
     names = []
     for name in response['actors']:
         names.append(name['name'])
@@ -68,16 +71,6 @@ charQuery = """query($name:String) {
                 }
             }"""
 
-def get_perf(**kwargs):
-    """
-    get_perf gets raider's performance. Currently set to Ulduar (P2) performance
-    :param name: the name of the raider
-    :return: the best and median performance of the raider
-    """ 
-    response = get_data(charQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
-    perfs = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage']}
-    return perfs
-
 shadowQuery = """query($name:String) {
                 characterData{
                     character(name:$name, serverSlug: "Mankrik", serverRegion: "US") {
@@ -86,24 +79,21 @@ shadowQuery = """query($name:String) {
                 }
             }"""
 
-def get_perf_shadow(**kwargs):
+def get_perf(**kwargs):
     """
-    get_perf_shadow gets specifically shadow spec's performance due to incorrect quries for metric (hps)
+    get_perf gets raider's performance. Currently set to Ulduar (P2) performance
     :param name: the name of the raider
     :return: the best and median performance of the raider
     """ 
-    response = get_data(shadowQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
-    perfs = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage']}
-    return perfs
-
-def get_spec(**kwargs):
-    """
-    get_spec gets the specialization of the raider
-    :param name: the name of the raider
-    :return: the spec of the raider
-    """ 
-    response = get_data(charQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
+    try:
+        response = get_data(charQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
+    except:
+        return 1
+    
     spec = response['allStars'][0]['spec']
+    if spec == 'Shadow':
+        response = get_data(shadowQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
+
     if spec == 'Fury' or spec == 'Arms':
         spec = 'Warrior'
     elif spec == 'Survival' or spec == 'Marksmanship':
@@ -114,4 +104,6 @@ def get_spec(**kwargs):
         spec = 'Mage'
     elif spec == 'Protection':
         spec = 'Paladin'
-    return {'Spec':spec}
+
+    wcl = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage'], 'Spec':spec}
+    return wcl

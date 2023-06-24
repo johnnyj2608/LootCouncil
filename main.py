@@ -1,18 +1,19 @@
 import pandas as pd
 import pprint as pp
 import wcl
+import time
 from io import StringIO
 from auth import curl
 
 def main():
     items = {}
-    sheet = '1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q'
-    physical_id = '594385335'
-    caster_id = '1620926651'
-    tank_id = '1031043128'
-    spreadsheetPrio(sheet, physical_id, items)
-    spreadsheetPrio(sheet, caster_id, items)
-    spreadsheetPrio(sheet, tank_id, items)
+    spreadsheet = '1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q'
+    sheet_ID = {'physical':'594385335', 'caster':'1620926651', 'tank':'1031043128'}
+    for sheet in sheet_ID:
+        res = spreadsheetPrio(spreadsheet, sheet_ID[sheet], items)
+        if type(res) == int:
+            return errorCodes(res)
+    print('Retrieved spreadsheets')
 
     # Parse item priority string into lists
     for key in items:
@@ -32,6 +33,7 @@ def main():
         temp = [[x for x in sub_list if x] for sub_list in temp] # Remove empty strings
         items[key] = [x for x in temp if x != []] # Remove empty lists
     items['Greaves of Ruthless Judgment'] = items.pop('Greaves of the Ruthless Judgment') # Misspelled in spreadsheet
+    print('Parsed spreadsheet')
     
     # Ulduar prio (for my guild specifically)
     items['Pharos Gloves'] = [['Mage'], ['Warlock'], ['Balance', 'Shadow'], ['Elemental']]
@@ -50,6 +52,8 @@ def main():
     # Create dict to store character info
     tmb = 'https://thatsmybis.com/15596/raid-team-two/export/loot/html/all'
     response = curl(tmb)
+    if type(response) == int:
+        return errorCodes(response)
     csvStringIO = StringIO(response.text)
     df = pd.read_csv(csvStringIO, sep=",")
     wl = prio = df[(df['type']=='wishlist') & (df['received_at'].isnull())]
@@ -66,31 +70,38 @@ def main():
             raiders[key]['Received'] = temp[key]
         except:
             raiders[key]['Received'] = 0
+    print('Created player information')
 
     # Intersect report's attendance with raider dict and get performance & spec
     report = input("What's the report link? ") or "bPpcTmQrzGXdMxA6"
     if '/' in report:
         report = report.split('/')[4]
-    report_names = set(wcl.get_names(code=report))
+    report_names = wcl.get_names(code=report)
+    if type(report_names) == int:
+        return errorCodes(report_names)
+    report_names = set(report_names)
+    print('Retrieved names from report')
+
     delete_keys = []
     for key in raiders:
         if key in report_names:
-            raiders[key].update(wcl.get_spec(name=key))
-            if raiders[key]['Spec'] == 'Shadow':
-                raiders[key].update(wcl.get_perf_shadow(name=key))
-            else:
-                raiders[key].update(wcl.get_perf(name=key))
+            cur = wcl.get_perf(name=key)
+            if type(cur) == int:
+                return errorCodes(cur)
+            raiders[key].update(wcl.get_perf(name=key))
         else:
             delete_keys.append(key)
             prio = prio[prio['character_name'] != key]
     for key in delete_keys:
         del raiders[key]
+    print('Updated eligible players with performance metric')
 
     # Create prio dictionary, {item_name:{character_name:[sort_order]}
     prio = {k: f.groupby('character_name')['sort_order'].apply(list).to_dict()
      for k, f in prio.groupby('item_name')}
     for key in prio:
         prio[key].update({'Prio':items[key]})
+    print('Created item to player map')
 
      # Calculate values and assign highest priority name(s) to item
     for key in prio:
@@ -115,7 +126,8 @@ def main():
             elif cur == score:
                 res.append(name)
         prio[key] = res
-    pp.pprint(prio)
+    print('Assigned priority to items')
+    return prio
 
 def perf_score(perf):
     """
@@ -190,10 +202,31 @@ def spreadsheetPrio(spreadsheet, sheet, priority):
     :return: dictionary of item to class prio
     """ 
     url = f'https://docs.google.com/spreadsheets/d/{spreadsheet}/export?gid={sheet}&format=csv'
-    df = pd.read_csv(url, skiprows=[0])
+    try:
+        df = pd.read_csv(url, skiprows=[0])
+    except:
+        return 2
     df = df[['Item - Horde', 'Prio']]
     priority.update(df.set_index('Item - Horde').to_dict()['Prio'])
-    return 
+    return
+
+def errorCodes(number):
+    res = 'Error: '
+    if number == 0:
+        return 'Not a valid report code'
+    elif number == 1:
+        return 'Not a valid WCL profile name'
+    elif number == 2:
+        return 'Not a valid spreadsheet'
+    elif number == 3:
+        return 'Not a valid wishlist'
 
 if __name__ == "__main__":
-    main()
+    start_time = time.time()
+    res = main()
+    if type(res) == str:
+        print(res)
+    else:
+        with open("Output.txt", "w") as text_file:
+            text_file.write(pp.pformat(res))
+    print("Process finished --- %s seconds ---" % (time.time() - start_time))
