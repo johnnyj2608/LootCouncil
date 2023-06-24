@@ -197,4 +197,3 @@ def spreadsheetPrio(spreadsheet, sheet, priority):
 
 if __name__ == "__main__":
     main()
-    
