@@ -98,8 +98,6 @@ def get_perf(**kwargs):
         spec = 'Warrior'
     elif spec == 'Survival' or spec == 'Marksmanship':
         spec = 'Hunter'
-    elif spec == 'Affliction' or spec == 'Demonology':
-        spec = 'Warlock'
     elif spec == 'Arcane' or spec == 'Fire':
         spec = 'Mage'
     elif spec == 'Protection':

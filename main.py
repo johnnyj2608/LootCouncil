@@ -24,12 +24,21 @@ def main():
         for level in range(len(temp)):
             temp[level] = temp[level].split('=')
             for spec in range(len(temp[level])):
-                if 'heal' in temp[level][spec].lower():
+                cur = temp[level][spec].lower()
+                if 'heal' in cur:
                     temp[level] = ['Holy', 'Restoration']
-                elif 'dps' in temp[level][spec].lower():
+                elif 'dps' in cur:
                     temp[level] = ['Mage', 'Warlock', 'Shadow', 'Balance', 'Elemental']
                 else:
                     temp[level][spec] = name_fix(temp[level][spec])
+            if 'Rogue' in temp[level]:      # Split rogues into respective specs
+                temp[level].remove('Rogue')
+                temp[level].append('Combat')
+                temp[level].append('Assassination')
+            if 'Warlock' in temp[level]:      # Split warlock into respective specs
+                temp[level].remove('Warlock')
+                temp[level].append('Affliction')
+                temp[level].append('Demonology')
         temp = [[x for x in sub_list if x] for sub_list in temp] # Remove empty strings
         items[key] = [x for x in temp if x != []] # Remove empty lists
     items['Greaves of Ruthless Judgment'] = items.pop('Greaves of the Ruthless Judgment') # Misspelled in spreadsheet
@@ -170,17 +179,21 @@ def name_fix(spec):
         return 'Enhancement'
     elif 'ele' in spec:
         return 'Elemental'
-    elif 'rog' in spec or 'r' == spec:
-        return 'Rogue'
     elif 'combat' in spec:
         return 'Combat'
     elif 'assassination' in spec:
         return 'Assassination'
+    elif 'rog' in spec or 'r' == spec:
+        return 'Rogue'
     elif 'feral' in spec:
         return 'Feral'
     elif 'boom' in spec:
         return 'Balance'
-    elif 'lock' in spec or 'aff' in spec or 'demo' in spec:
+    elif 'demo' in spec:
+        return 'Demonology'
+    elif 'aff' in spec:
+        return 'Affliction'
+    elif 'lock' in spec:
         return 'Warlock'
     elif 'mage' in spec or 'arcane' in spec or 'fire' in spec:
         return 'Mage'
