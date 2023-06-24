@@ -28,7 +28,7 @@ https://thatsmybis.com/GUILD_ID/GUILD_NAME/export/loot/html/all
 
 A Warcraftlogs account is required for the next step. This is used to access player performance and role. It will also intersect with TMB wishlists and received lists to only include eligible (those who were present) people to receive loot. 
 
-Follow the website below to acquire API access. Save the client ID and secret
+Follow the website below to acquire API access. Enter any name and redirect URL for your client. Save the client ID and secret
 
 https://www.warcraftlogs.com/api/clients/
 <img width="1049" alt="client" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/cc43db09-04ee-4d55-8698-d8030a5661cb">
