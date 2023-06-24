@@ -26,7 +26,9 @@ A guild on the website below is required to access wishlists and received lists.
 https://thatsmybis.com/GUILD_ID/GUILD_NAME/export/loot/html/all
 <img width="933" alt="Screen Shot 2023-06-24 at 2 46 05 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/dfba4c0a-1a50-40a1-8f11-80962a09edd9">
 
-A Warcraftlogs account is required for the next step. This is used to access player performance and role. Then follow the website below to have API access. Save the client ID and secret, you will need them
+A Warcraftlogs account is required for the next step. This is used to access player performance and role. It will also intersect with TMB wishlists and received list to only include eligible (those who were present) people to receive loot. 
+
+Follow the website below to acquire API access. Save the client ID and secret
 
 https://www.warcraftlogs.com/api/clients/
 <img width="1049" alt="client" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/cc43db09-04ee-4d55-8698-d8030a5661cb">
@@ -38,7 +40,7 @@ Run main.py. User input will be required.
 
 <img width="206" alt="Screen Shot 2023-06-24 at 3 00 34 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/4daa78d1-83a7-4caf-b9a1-172cddcd3043">
 
-Paste a Warcraftlogs report in order to intersect the players eligible for loot and wishlists. You can either insert either the code URL or the entire report URL. The end result will be outputted with the pretty print library
+You can either insert either the code URL or the entire report URL. The end result will be outputted with the pretty print library
 <img width="590" alt="result" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/1cd5231f-9acd-4a45-b898-238ed6673701">
 
 ### Docker (Optional):
