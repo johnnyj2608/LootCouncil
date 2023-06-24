@@ -1,6 +1,6 @@
 import requests
-from auth import clientID
-from auth import clientSecret
+from client import clientID
+from client import clientSecret
 
 tokenURL = "https://www.warcraftlogs.com/oauth/token"
 publicURL = "https://classic.warcraftlogs.com/api/v2/client"
@@ -42,17 +42,43 @@ def get_names(**kwargs):
         names.append(name['name'])
     return names
 
-report_names = get_names(code='bPpcTmQrzGXdMxA6')
-
-charQuery = """query($name:String, $byBracket:Boolean) {
+charQuery = """query($name:String) {
                 characterData{
                     character(name:$name, serverSlug: "Mankrik", serverRegion: "US") {
-                        zoneRankings(zoneID:1017, byBracket:$byBracket)
+                        zoneRankings(zoneID:1017)
                     }
                 }
             }"""
 
 def get_perf(**kwargs):
     response = get_data(charQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
-    perfs = {'Best':int(response['bestPerformanceAverage']), 'Med':int(response['medianPerformanceAverage'])}
+    perfs = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage']}
     return perfs
+
+shadowQuery = """query($name:String) {
+                characterData{
+                    character(name:$name, serverSlug: "Mankrik", serverRegion: "US") {
+                        zoneRankings(zoneID:1017, metric:dps)
+                    }
+                }
+            }"""
+
+def get_perf_shadow(**kwargs):
+    response = get_data(shadowQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
+    perfs = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage']}
+    return perfs
+
+def get_spec(**kwargs):
+    response = get_data(charQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
+    spec = response['allStars'][0]['spec']
+    if spec == 'Fury' or spec == 'Arms':
+        spec = 'Warrior'
+    elif spec == 'Survival' or spec == 'Marksmanship':
+        spec = 'Hunter'
+    elif spec == 'Affliction' or spec == 'Demonology':
+        spec = 'Warlock'
+    elif spec == 'Arcane' or spec == 'Fire':
+        spec = 'Mage'
+    elif spec == 'Protection':
+        spec = 'Paladin'
+    return {'Spec':spec}

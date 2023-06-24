@@ -38,19 +38,3 @@ headers = {
 
 def curl(link):
     return requests.get(link, cookies=cookies, headers=headers)
-
-def clientID():
-    return '997960ef-8fca-4bbc-b714-d818115051a1'
-
-def clientSecret():
-    return 'DI7yZHGlUh6N8bnFBIV73z1dWBeTOJQJzdTAlFmm'
-
-    # Get WCL API
-    # Get report
-    # Get names
-    # Intersect with raider dict
-    # Append max(median/bracket) performance (convert to 1-5)
-    # Intersect raider dict with items dict
-    # New dict to store item:name
-    # Funciton to rerun ^ after +=1 received
-    # Dockerize & Functions
