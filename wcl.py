@@ -16,12 +16,14 @@ def access_token():
         response = session.post(tokenURL, data = data, auth = auth)
     return response.json().get("access_token")
 
+accessToken = access_token()
+
 def retrieve_headers() -> dict[str, str]:
     """
     retrieve_headers() gets the headers
     :return: the headers
     """ 
-    return {"Authorization": f"Bearer {access_token()}"}
+    return {"Authorization": f"Bearer {accessToken}"}
 
 reportQuery = """query($code:String){
                 reportData{
