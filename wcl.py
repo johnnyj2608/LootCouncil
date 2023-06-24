@@ -6,6 +6,10 @@ tokenURL = "https://www.warcraftlogs.com/oauth/token"
 publicURL = "https://classic.warcraftlogs.com/api/v2/client"
 
 def access_token():
+    """
+    access_token() gets the access token
+    :return: the access token
+    """ 
     data={"grant_type":"client_credentials"}
     auth = clientID(), clientSecret()
     with requests.Session() as session:
@@ -13,6 +17,10 @@ def access_token():
     return response.json().get("access_token")
 
 def retrieve_headers() -> dict[str, str]:
+    """
+    retrieve_headers() gets the headers
+    :return: the headers
+    """ 
     return {"Authorization": f"Bearer {access_token()}"}
 
 reportQuery = """query($code:String){
@@ -28,6 +36,11 @@ reportQuery = """query($code:String){
             }"""
 
 def get_data(query:str, **kwargs):
+    """
+    get_data gets details about a WCL report
+    :param report: the report code
+    :return: all info about the report
+    """ 
     data = {"query":query, "variables": kwargs}
     with requests.Session() as session:
         session.headers = retrieve_headers()
@@ -36,6 +49,11 @@ def get_data(query:str, **kwargs):
 
 
 def get_names(**kwargs):
+    """
+    get_names gets all names from a WCL report
+    :param report: the report code
+    :return: all names in the WCL report
+    """ 
     response = get_data(reportQuery, **kwargs)['data']['reportData']['report']['masterData']
     names = []
     for name in response['actors']:
@@ -51,6 +69,11 @@ charQuery = """query($name:String) {
             }"""
 
 def get_perf(**kwargs):
+    """
+    get_perf gets raider's performance. Currently set to Ulduar (P2) performance
+    :param name: the name of the raider
+    :return: the best and median performance of the raider
+    """ 
     response = get_data(charQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
     perfs = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage']}
     return perfs
@@ -64,11 +87,21 @@ shadowQuery = """query($name:String) {
             }"""
 
 def get_perf_shadow(**kwargs):
+    """
+    get_perf_shadow gets specifically shadow spec's performance due to incorrect quries for metric (hps)
+    :param name: the name of the raider
+    :return: the best and median performance of the raider
+    """ 
     response = get_data(shadowQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
     perfs = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage']}
     return perfs
 
 def get_spec(**kwargs):
+    """
+    get_spec gets the specialization of the raider
+    :param name: the name of the raider
+    :return: the spec of the raider
+    """ 
     response = get_data(charQuery, **kwargs)['data']['characterData']['character']['zoneRankings']
     spec = response['allStars'][0]['spec']
     if spec == 'Fury' or spec == 'Arms':
