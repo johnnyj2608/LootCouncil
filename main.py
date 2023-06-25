@@ -45,11 +45,11 @@ def main():
     print('Parsed spreadsheet')
     
     # Ulduar prio (for my guild specifically)
-    items['Pharos Gloves'] = [['Fire', 'Arcane'], ['Warlock'], ['Balance', 'Shadow'], ['Elemental']]
-    items['Flare of the Heavens'] = [['Warlock'], ['Fire', 'Arcane'], ['Balance', 'Shadow', 'Elemental']]
-    items['Conductive Seal'] = [['Warlock'], ['Fire', 'Arcane', 'Shadow', 'Balance', 'Elemental'], ['Holy', 'Resto']]
+    items['Pharos Gloves'] = [['Fire', 'Arcane'], ['Affliction', 'Demonology'], ['Balance', 'Shadow'], ['Elemental']]
+    items['Flare of the Heavens'] = [['Affliciton', 'Demonology'], ['Fire', 'Arcane'], ['Balance', 'Shadow', 'Elemental']]
+    items['Conductive Seal'] = [['Affliciton', 'Demonology'], ['Fire', 'Arcane', 'Shadow', 'Balance', 'Elemental'], ['Holy', 'Resto']]
     items['Bindings of Winter Gale'] = [['Enhancement'], ['Elemental'], ['Resto'], ['Holy']]
-    items['Scale of Fates'] = [['Warlock'], ['Balance', 'Shadow'], ['Fire', 'Arcane']]
+    items['Scale of Fates'] = [['Affliction', 'Demonology'], ['Balance', 'Shadow'], ['Fire', 'Arcane']]
     items["Comet's Trail"] = [['Rogue', 'Enhancement', 'Unholy']]
 
     items['Seal of the Betrayed King'] = [['Frost']]
