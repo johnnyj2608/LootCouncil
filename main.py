@@ -28,7 +28,7 @@ def main():
                 if 'heal' in cur:
                     temp[level] = ['Holy', 'Restoration']
                 elif 'dps' in cur:
-                    temp[level] = ['Fire', 'Arcane', 'Warlock', 'Shadow', 'Balance', 'Elemental']
+                    temp[level] = ['Mage', 'Warlock', 'Shadow', 'Balance', 'Elemental']
                 else:
                     temp[level][spec] = name_fix(temp[level][spec])
             if 'Rogue' in temp[level]:      # Split rogues into respective specs
