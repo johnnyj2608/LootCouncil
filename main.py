@@ -28,7 +28,7 @@ def main():
                 if 'heal' in cur:
                     temp[level] = ['Holy', 'Restoration']
                 elif 'dps' in cur:
-                    temp[level] = ['Mage', 'Warlock', 'Shadow', 'Balance', 'Elemental']
+                    temp[level] = ['Fire', 'Arcane', 'Warlock', 'Shadow', 'Balance', 'Elemental']
                 else:
                     temp[level][spec] = name_fix(temp[level][spec])
             if 'Rogue' in temp[level]:      # Split rogues into respective specs
@@ -45,11 +45,11 @@ def main():
     print('Parsed spreadsheet')
     
     # Ulduar prio (for my guild specifically)
-    items['Pharos Gloves'] = [['Mage'], ['Warlock'], ['Balance', 'Shadow'], ['Elemental']]
-    items['Flare of the Heavens'] = [['Warlock'], ['Mage'], ['Balance', 'Shadow', 'Elemental']]
-    items['Conductive Seal'] = [['Warlock'], ['Mage', 'Shadow', 'Balance', 'Elemental'], ['Holy', 'Resto']]
+    items['Pharos Gloves'] = [['Fire', 'Arcane'], ['Warlock'], ['Balance', 'Shadow'], ['Elemental']]
+    items['Flare of the Heavens'] = [['Warlock'], ['Fire', 'Arcane'], ['Balance', 'Shadow', 'Elemental']]
+    items['Conductive Seal'] = [['Warlock'], ['Fire', 'Arcane', 'Shadow', 'Balance', 'Elemental'], ['Holy', 'Resto']]
     items['Bindings of Winter Gale'] = [['Enhancement'], ['Elemental'], ['Resto'], ['Holy']]
-    items['Scale of Fates'] = [['Warlock'], ['Balance', 'Shadow'], ['Mage']]
+    items['Scale of Fates'] = [['Warlock'], ['Balance', 'Shadow'], ['Fire', 'Arcane']]
     items["Comet's Trail"] = [['Rogue', 'Enhancement', 'Unholy']]
 
     items['Seal of the Betrayed King'] = [['Frost']]
