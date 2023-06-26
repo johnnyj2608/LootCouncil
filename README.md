@@ -1,10 +1,10 @@
 ## Project Name & Pitch
 
-Name
+Reward Allocator
 
-Description
+A Python script that aggregates data from public websites and computes reward assignments
 
-Built with Python. Utilized Warcraft Logs API and GraphQL.
+Built with Python. Utilized Pandas library to parse web-scraped data and GraphQL to query Warcraft Log’s API. Also used pretty print and print libraries to output the result to a text file
 
 
 ## Installation and Setup Instructions
@@ -15,13 +15,13 @@ You will need a couple of imports to run this script.
 `pip install pandas`
 `pip install requests`
 
-Class/spec priority of items is scraped from this public spreadsheet. Take a note at the link below.
+Class/spec priority of items is scraped from this public spreadsheet. Take a note at the link below. Insert your own in main.py, lines 10 and 11.
 `1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q` is your spreadsheet ID. `594385335` is your sheet ID
 
 https://docs.google.com/spreadsheets/d/1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q/edit#gid=594385335
 ![spreadsheet](https://github.com/johnnyj2608/LootCouncil/assets/54607786/a4cabd43-ebbb-4e07-bde6-4505d870836b)
 
-A guild on the website below is required to access wishlists and received lists. These lists will be intersected with the priority spreadsheet to keep only the relevant items. 
+A guild on the website below is required to access wishlists and received lists. These lists will be intersected with the priority spreadsheet to keep only the relevant items. Insert your own in main.py, line 62.
 
 https://thatsmybis.com/GUILD_ID/GUILD_NAME/export/loot/html/all
 <img width="933" alt="Screen Shot 2023-06-24 at 2 46 05 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/dfba4c0a-1a50-40a1-8f11-80962a09edd9">
@@ -56,8 +56,10 @@ You can either insert either the code URL or the entire report URL. The end resu
 
 I created this project in the summer of 2023. The goals included: practicing with Python, learning how to use docker, and reducing the amount of time spent discussing item distribution for the game World of Warcraft.
 
-Journey
+I started by following a tutorial on web scraping and using Pandas to parse the data. After discovering one of the websites had an API associated with it, I learned about GraphQL to query it. Trying to debug the data was an eyesore, so I implemented the pretty print library to make it easier. Finally, I outputted the result into a text file so I could send it.
 
-Challenges
+One of the biggest challenges was figuring out how to scrape a website that required OAuth. I could’ve downloaded the HTML page for every run, but I wanted this script to handle dynamic data. When I attempted to scrape, it would attempt it on the login page. I tried utilizing Mechanize and Selenium libraries to automate the login process, but both were unsuccessful. What did work for me was using my cookies and headers with a cURL converter.
 
-Recreation + Next Steps
+Another challenge I had was using GraphQL to query Warcraft Log’s API. I had no prior experience with the language, and finding solutions to my bugs was scarce since this API isn’t as well known. I tried to learn by looking up other GitHub repositories that used this API, but none utilized it the way I wanted to. Luckily I then discovered a discord server dedicated to discussing the API with the original developers responding frequently.
+
+Eventually, I want to build a GUI and have a way to apply increments during runtime. For example, one criterion for the algorithm is the number of rewards a person has received. I wish to have the option to award a person and rerun the algorithm without loading the web-scraped and API data again. It could be impactful since one increment could make the next person in line overtake the current in priority.
