@@ -31,7 +31,7 @@ https://thatsmybis.com/GUILD_ID/GUILD_NAME/export/loot/html/all
 To access this website behind Discord OAuth, create a file called client.py. Follow these steps on this Stack Overflow post:
 https://stackoverflow.com/questions/23102833/how-to-scrape-a-website-which-requires-login-using-python-and-beautifulsoup
 
-Here is an example of making your response call into a function:
+Copy and paste the converted cURL into the client.py file. Here is an example of making your response call into a function:
 <img width="480" alt="Screen Shot 2023-06-26 at 2 09 08 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/e492ae9f-06b8-457f-a2a1-dd1b636e45a9">
 
 ### Warcraft Logs API
