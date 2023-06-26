@@ -56,6 +56,7 @@ Run main.py. User input will be required.
 You can either insert either the code URL or the entire report URL. The end result will be outputted to a text file with pretty print.
 
 <img width="380" alt="Screen Shot 2023-06-26 at 2 21 21 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/84888be1-4643-4495-8b48-7c436d5e4ada">
+<br />
 <img width="447" alt="Screen Shot 2023-06-26 at 2 21 56 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/2d6c6705-288d-4ab7-b9d9-92fd6a9ebbee">
 
 
