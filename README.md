@@ -26,6 +26,9 @@ A guild on the website below is required to access wishlists and received lists.
 https://thatsmybis.com/GUILD_ID/GUILD_NAME/export/loot/html/all
 <img width="933" alt="Screen Shot 2023-06-24 at 2 46 05 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/dfba4c0a-1a50-40a1-8f11-80962a09edd9">
 
+To access this website behind Discord OAuth, create a file called auth.py. Follow these steps on this Stack Overflow post:
+https://stackoverflow.com/questions/23102833/how-to-scrape-a-website-which-requires-login-using-python-and-beautifulsoup
+
 A Warcraftlogs account is required for the next step. This is used to access player performance and role. It will also intersect with TMB wishlists and received lists to only include eligible (those who were present) people to receive loot. 
 
 Follow the website below to acquire API access. Enter any name and redirect URL for your client. Save the client ID and secret
