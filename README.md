@@ -50,6 +50,7 @@ Full GraphQL documentation for Warcraft Logs API: https://www.warcraftlogs.com/v
 ### Running The Script
 
 Run main.py. User input will be required. 
+
 <img width="206" alt="Screen Shot 2023-06-24 at 3 00 34 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/4daa78d1-83a7-4caf-b9a1-172cddcd3043">
 
 You can either insert either the code URL or the entire report URL. The end result will be outputted with the pretty print library
