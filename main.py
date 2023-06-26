@@ -3,7 +3,7 @@ import pprint as pp
 import wcl
 import time
 from io import StringIO
-from auth import curl
+from client import header
 
 def main():
     items = {}
@@ -60,7 +60,7 @@ def main():
 
     # Create dict to store character info
     tmb = 'https://thatsmybis.com/15596/raid-team-two/export/loot/html/all'
-    response = curl(tmb)
+    response = header(tmb)
     if type(response) == int:
         return errorCodes(response)
     csvStringIO = StringIO(response.text)
