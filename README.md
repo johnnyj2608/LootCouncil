@@ -26,8 +26,11 @@ A guild on the website below is required to access wishlists and received lists.
 https://thatsmybis.com/GUILD_ID/GUILD_NAME/export/loot/html/all
 <img width="933" alt="Screen Shot 2023-06-24 at 2 46 05 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/dfba4c0a-1a50-40a1-8f11-80962a09edd9">
 
-To access this website behind Discord OAuth, create a file called auth.py. Follow these steps on this Stack Overflow post:
+To access this website behind Discord OAuth, create a file called client.py. Follow these steps on this Stack Overflow post:
 https://stackoverflow.com/questions/23102833/how-to-scrape-a-website-which-requires-login-using-python-and-beautifulsoup
+
+Here is an example of making your response call into a function:
+<img width="480" alt="Screen Shot 2023-06-26 at 2 09 08 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/e492ae9f-06b8-457f-a2a1-dd1b636e45a9">
 
 A Warcraftlogs account is required for the next step. This is used to access player performance and role. It will also intersect with TMB wishlists and received lists to only include eligible (those who were present) people to receive loot. 
 
@@ -36,8 +39,8 @@ Follow the website below to acquire API access. Enter any name and redirect URL 
 https://www.warcraftlogs.com/api/clients/
 <img width="1049" alt="client" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/cc43db09-04ee-4d55-8698-d8030a5661cb">
 
-Create a new Python file called "client.py". This file will have two functions for your client ID and secret (or hard-code it into your wcl.py file)
-<img width="402" alt="Screen Shot 2023-06-24 at 2 58 00 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/4e0d7790-df75-4f7b-885a-e46b408e0076">
+Revisit the client.py file. Create these two functions for your client ID and secret (or hard-code it into your wcl.py file)
+<img width="386" alt="Screen Shot 2023-06-26 at 2 11 40 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/eb89def2-bc3e-44a5-a1fa-16141957bfe5">
 
 Full GraphQL documentation for Warcraft Logs API: https://www.warcraftlogs.com/v2-api-docs/warcraft/
 
