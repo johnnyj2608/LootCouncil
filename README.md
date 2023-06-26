@@ -51,11 +51,13 @@ Full GraphQL documentation for Warcraft Logs API: https://www.warcraftlogs.com/v
 
 Run main.py. User input will be required. 
 
-<img width="206" alt="Screen Shot 2023-06-24 at 3 00 34 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/4daa78d1-83a7-4caf-b9a1-172cddcd3043">
+<img width="315" alt="Screen Shot 2023-06-26 at 2 17 30 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/78890cb2-1315-4c18-9bc4-fb048ea27b54">
 
-You can either insert either the code URL or the entire report URL. The end result will be outputted with the pretty print library
+You can either insert either the code URL or the entire report URL. The end result will be outputted to a text file with pretty print.
 
-<img width="590" alt="result" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/1cd5231f-9acd-4a45-b898-238ed6673701">
+<img width="380" alt="Screen Shot 2023-06-26 at 2 21 21 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/84888be1-4643-4495-8b48-7c436d5e4ada">
+<img width="447" alt="Screen Shot 2023-06-26 at 2 21 56 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/2d6c6705-288d-4ab7-b9d9-92fd6a9ebbee">
+
 
 ### Docker (Optional):
 
