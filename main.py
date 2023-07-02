@@ -3,6 +3,7 @@ import pprint as pp
 import wcl
 import links
 import time
+from datetime import date
 from io import StringIO
 from client import header
 
@@ -71,14 +72,15 @@ def main():
     print('Created player information')
 
     # Intersect report's attendance with raider dict and get performance & spec
-    report = wcl.get_recentReport()
+    report = wcl.get_recentReport(guildID=links.get_guildID())
+    print('Retrieved recent 25M report')
     if type(report) == int:
         return errorCodes(report)
     report_names = wcl.get_names(code=report)
     if type(report_names) == int:
         return errorCodes(report_names)
     report_names = set(report_names)
-    print('Retrieved names from recent 25M report')
+    print('Retrieved names from report')
 
     delete_keys = []
     for key in raiders:
@@ -231,6 +233,7 @@ if __name__ == "__main__":
     if type(res) == str:
         print(res)
     else:
-        with open("Output.txt", "w") as text_file:
+        today = date.today().strftime("%m-%d-%y")
+        with open("Output/"+today+".txt", "w") as text_file:
             text_file.write(pp.pformat(res))
     print("Process finished --- %s seconds ---" % (time.time() - start_time))

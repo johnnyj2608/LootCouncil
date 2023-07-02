@@ -108,9 +108,9 @@ def get_perf(**kwargs):
     wcl = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage'], 'Spec':spec}
     return wcl
 
-recentQuery = """query{
+recentQuery = """query($guildID:Int){
                 reportData{
-                    reports(guildID: 695278, zoneID: 1018, limit: 10){
+                    reports(guildID: $guildID, zoneID: 1018, limit: 10){
                         data {
                             code
                             fights (killType: Kills){

@@ -23,3 +23,6 @@ def update_prio(items):
 
 def get_tmb():
     return 'https://thatsmybis.com/15596/raid-team-two/export/loot/html/all'
+
+def get_guildID():
+    return 695278
