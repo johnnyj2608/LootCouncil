@@ -17,6 +17,7 @@ You will need a couple of imports to run this script.
 
 ### Priority Spreadsheet
 Class/spec priority of items is scraped from this public spreadsheet. Take a note at the link below. Insert your own in links.py, get_spreadsheet() and get_sheetID()
+
 `1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q` is your spreadsheet ID. `594385335` is your sheet ID
 
 https://docs.google.com/spreadsheets/d/1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q/edit#gid=594385335
