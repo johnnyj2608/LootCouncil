@@ -48,13 +48,12 @@ Revisit the client.py file. Create these two functions for your client ID and se
 
 Full GraphQL documentation for Warcraft Logs API: https://www.warcraftlogs.com/v2-api-docs/warcraft/
 
+In links.py, change get_guildID() to your own guild's WCL ID.
+
 ### Running The Script
 
-Run main.py. User input will be required. 
-
-<img width="315" alt="Screen Shot 2023-06-26 at 2 17 30 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/78890cb2-1315-4c18-9bc4-fb048ea27b54">
-
-You can either insert either the code URL or the entire report URL. The end result will be outputted to a text file with pretty print.
+main.py will automatically run every Tuesday and Thursday at 8:15 PM. To adjust to your own raid schedule, go to .github/workflows/actions.yml and change line 5, cron. If you are unfamiliar with cron expressions, use this website:
+https://crontab.guru/
 
 <img width="380" alt="Screen Shot 2023-06-26 at 2 21 21 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/84888be1-4643-4495-8b48-7c436d5e4ada">
 <br />
