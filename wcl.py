@@ -68,7 +68,7 @@ def get_names(**kwargs):
 charQuery = """query($name:String) {
                 characterData{
                     character(name:$name, serverSlug: "Mankrik", serverRegion: "US") {
-                        zoneRankings(zoneID:1017)
+                        zoneRankings(zoneID:1018)
                     }
                 }
             }"""

@@ -1,14 +1,15 @@
 import pandas as pd
 import pprint as pp
 import wcl
+import links
 import time
 from io import StringIO
 from client import header
 
 def main():
     items = {}
-    spreadsheet = '1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q'
-    sheet_ID = {'physical':'594385335', 'caster':'1620926651', 'tank':'1031043128'}
+    spreadsheet = links.get_spreadsheet()
+    sheet_ID = links.get_sheetID()
     for sheet in sheet_ID:
         res = spreadsheetPrio(spreadsheet, sheet_ID[sheet], items)
         if type(res) == int:
@@ -41,25 +42,13 @@ def main():
                 temp[level].append('Demonology')
         temp = [[x for x in sub_list if x] for sub_list in temp] # Remove empty strings
         items[key] = [x for x in temp if x != []] # Remove empty lists
-    items['Greaves of Ruthless Judgment'] = items.pop('Greaves of the Ruthless Judgment') # Misspelled in spreadsheet
-    print('Parsed spreadsheet')
     
-    # Ulduar prio (for my guild specifically)
-    items['Pharos Gloves'] = [['Fire', 'Arcane'], ['Affliction', 'Demonology'], ['Balance', 'Shadow'], ['Elemental']]
-    items['Flare of the Heavens'] = [['Affliciton', 'Demonology'], ['Fire', 'Arcane'], ['Balance', 'Shadow', 'Elemental']]
-    items['Conductive Seal'] = [['Affliciton', 'Demonology'], ['Fire', 'Arcane', 'Shadow', 'Balance', 'Elemental'], ['Holy', 'Resto']]
-    items['Bindings of Winter Gale'] = [['Enhancement'], ['Elemental'], ['Resto'], ['Holy']]
-    items['Scale of Fates'] = [['Affliction', 'Demonology'], ['Balance', 'Shadow'], ['Fire', 'Arcane']]
-    items["Comet's Trail"] = [['Rogue', 'Enhancement', 'Unholy']]
+    print('Parsed spreadsheet')
 
-    items['Seal of the Betrayed King'] = [['Frost']]
-    items['Sabatons of Lifeless Night'] = [['Unholy']]
-    items['Armbands of Bedlam'] = [['Unholy']]
-    items['Frigid Strength of Hodir'] = [['Frost']]
-    items['Crown of Luminescence'] = [['Holy']]
+    links.update_prio(items)
 
     # Create dict to store character info
-    tmb = 'https://thatsmybis.com/15596/raid-team-two/export/loot/html/all'
+    tmb = links.get_tmb()
     response = header(tmb)
     if type(response) == int:
         return errorCodes(response)
@@ -82,7 +71,7 @@ def main():
     print('Created player information')
 
     # Intersect report's attendance with raider dict and get performance & spec
-    report = input("What's the report link? ") or "bPpcTmQrzGXdMxA6"
+    report = input("What's the report link? ") or "BPcdwa93mprZqvH8"
     if '/' in report:
         report = report.split('/')[4]
     report_names = wcl.get_names(code=report)
