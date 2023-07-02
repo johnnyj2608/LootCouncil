@@ -54,7 +54,9 @@ In links.py, change get_guildID() to your own guild's WCL ID.
 
 main.py will automatically run every Tuesday and Thursday at 8:15 PM. To adjust to your own raid schedule, go to .github/workflows/actions.yml and change line 5, cron. If you are unfamiliar with cron expressions, use this website:
 https://crontab.guru/
+Make sure you allow workflows on your GitHub token. More information in this link: https://stackoverflow.com/questions/64059610/how-to-resolve-refusing-to-allow-an-oauth-app-to-create-or-update-workflow-on
 
+You can also run this script normally
 <img width="380" alt="Screen Shot 2023-06-26 at 2 21 21 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/84888be1-4643-4495-8b48-7c436d5e4ada">
 <br />
 <img width="447" alt="Screen Shot 2023-06-26 at 2 21 56 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/2d6c6705-288d-4ab7-b9d9-92fd6a9ebbee">
