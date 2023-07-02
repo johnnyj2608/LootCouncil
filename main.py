@@ -71,14 +71,14 @@ def main():
     print('Created player information')
 
     # Intersect report's attendance with raider dict and get performance & spec
-    report = input("What's the report link? ") or "BPcdwa93mprZqvH8"
-    if '/' in report:
-        report = report.split('/')[4]
+    report = wcl.get_recentReport()
+    if type(report) == int:
+        return errorCodes(report)
     report_names = wcl.get_names(code=report)
     if type(report_names) == int:
         return errorCodes(report_names)
     report_names = set(report_names)
-    print('Retrieved names from report')
+    print('Retrieved names from recent 25M report')
 
     delete_keys = []
     for key in raiders:
@@ -222,6 +222,8 @@ def errorCodes(number):
         return 'Not a valid spreadsheet'
     elif number == 3:
         return 'Not a valid wishlist'
+    elif number == 4:
+        return 'No recent 25M reports'
 
 if __name__ == "__main__":
     start_time = time.time()

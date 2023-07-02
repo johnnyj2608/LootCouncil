@@ -107,3 +107,26 @@ def get_perf(**kwargs):
 
     wcl = {'Best':response['bestPerformanceAverage'], 'Med':response['medianPerformanceAverage'], 'Spec':spec}
     return wcl
+
+recentQuery = """query{
+                reportData{
+                    reports(guildID: 695278, zoneID: 1018, limit: 10){
+                        data {
+                            code
+                            fights (killType: Kills){
+                                size
+                            }
+                        }
+                    }
+                }
+            }"""
+
+def get_recentReport(**kwargs):
+    try:
+        response = get_data(recentQuery, **kwargs)['data']['reportData']['reports']['data']
+    except:
+        return 0
+    for code in response:
+        if code['fights'][0]['size'] == 25:
+            return code['code']
+    return 4
