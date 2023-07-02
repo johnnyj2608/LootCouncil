@@ -16,14 +16,14 @@ You will need a couple of imports to run this script.
 `pip install requests`
 
 ### Priority Spreadsheet
-Class/spec priority of items is scraped from this public spreadsheet. Take a note at the link below. Insert your own in main.py, lines 10 and 11.
+Class/spec priority of items is scraped from this public spreadsheet. Take a note at the link below. Insert your own in links.py, get_spreadsheet() and get_sheetID()
 `1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q` is your spreadsheet ID. `594385335` is your sheet ID
 
 https://docs.google.com/spreadsheets/d/1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q/edit#gid=594385335
 ![spreadsheet](https://github.com/johnnyj2608/LootCouncil/assets/54607786/a4cabd43-ebbb-4e07-bde6-4505d870836b)
 
 ### That's My BiS
-A guild on the website below is required to access wishlists and received lists. These lists will be intersected with the priority spreadsheet to keep only the relevant items. Insert your own in main.py, line 62.
+A guild on the website below is required to access wishlists and received lists. These lists will be intersected with the priority spreadsheet to keep only the relevant items. Insert your own in links.py, get_tmb().
 
 https://thatsmybis.com/GUILD_ID/GUILD_NAME/export/loot/html/all
 <img width="933" alt="Screen Shot 2023-06-24 at 2 46 05 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/dfba4c0a-1a50-40a1-8f11-80962a09edd9">
