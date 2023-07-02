@@ -110,7 +110,7 @@ def get_perf(**kwargs):
 
 recentQuery = """query($guildID:Int){
                 reportData{
-                    reports(guildID: $guildID, zoneID: 1018, limit: 10){
+                    reports(guildID: $guildID, zoneID: 1018, limit: 3){
                         data {
                             code
                             fights (killType: Kills){
