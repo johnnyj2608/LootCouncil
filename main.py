@@ -5,7 +5,6 @@ import links
 import time
 from datetime import date
 from io import StringIO
-from config import header
 
 def main():
     items = {}
@@ -50,7 +49,7 @@ def main():
 
     # Create dict to store character info
     tmb = links.get_tmb()
-    response = header(tmb)
+    response = wcl.header(tmb)
     if type(response) == int:
         return errorCodes(response)
     csvStringIO = StringIO(response.text)

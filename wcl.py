@@ -4,6 +4,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def header(link):
+    res = requests.get(link, cookies={os.getenv("tmbKey"):os.getenv("tmbVal")})
+    if res.status_code == 200:
+        return res
+    else:
+        return 3
+
 tokenURL = "https://www.warcraftlogs.com/oauth/token"
 publicURL = "https://classic.warcraftlogs.com/api/v2/client"
 
