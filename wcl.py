@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def header(link):
-    res = requests.get(link, cookies={os.getenv("tmbKey"):os.getenv("tmbVal")})
+    res = requests.get(link, cookies={os.getenv("TMB_KEY"):os.getenv("TMB_VAL")})
     if res.status_code == 200:
         return res
     else:
@@ -20,7 +20,7 @@ def access_token():
     :return: the access token
     """ 
     data={"grant_type":"client_credentials"}
-    auth = os.getenv("clientID"), os.getenv("clientSecret")
+    auth = os.getenv("CLIENT_ID"), os.getenv("CLIENT_SECRET")
     with requests.Session() as session:
         response = session.post(tokenURL, data = data, auth = auth)
     return response.json().get("access_token")

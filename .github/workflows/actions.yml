@@ -26,6 +26,8 @@ jobs:
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          TMB_KEY: ${{ secrets.TMB_KEY }}
+          TMB_VAL: ${{ secrets.TMB_VAL }}
         run: python main.py
           
       - name: commit files
