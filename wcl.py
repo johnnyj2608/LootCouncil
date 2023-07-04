@@ -1,6 +1,8 @@
 import requests
-from config import clientID
-from config import clientSecret
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 tokenURL = "https://www.warcraftlogs.com/oauth/token"
 publicURL = "https://classic.warcraftlogs.com/api/v2/client"
@@ -11,7 +13,7 @@ def access_token():
     :return: the access token
     """ 
     data={"grant_type":"client_credentials"}
-    auth = clientID(), clientSecret()
+    auth = os.getenv("clientID"), os.getenv("clientSecret")
     with requests.Session() as session:
         response = session.post(tokenURL, data = data, auth = auth)
     return response.json().get("access_token")
