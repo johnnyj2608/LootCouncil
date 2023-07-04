@@ -1,6 +1,6 @@
 import requests
-from client import clientID
-from client import clientSecret
+from config import clientID
+from config import clientSecret
 
 tokenURL = "https://www.warcraftlogs.com/oauth/token"
 publicURL = "https://classic.warcraftlogs.com/api/v2/client"
@@ -110,7 +110,7 @@ def get_perf(**kwargs):
 
 recentQuery = """query($guildID:Int){
                 reportData{
-                    reports(guildID: $guildID, zoneID: 1018, limit: 3){
+                    reports(guildID: $guildID, zoneID: 1018, limit: 10){
                         data {
                             code
                             fights (killType: Kills){

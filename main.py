@@ -5,7 +5,7 @@ import links
 import time
 from datetime import date
 from io import StringIO
-from client import header
+from config import header
 
 def main():
     items = {}
