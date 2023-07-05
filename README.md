@@ -58,19 +58,19 @@ You will also need to change a couple of settings. Allow for workflows with your
 <img width="299" alt="Screen Shot 2023-07-05 at 12 19 27 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/25d74dd5-8dfd-4879-b952-25c710b23f9e">
 <br>
 <img width="296" alt="Screen Shot 2023-07-05 at 12 19 40 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/96bab1f5-e878-442a-b308-bd48350061f0">
-
+<br>
 <img width="563" alt="Screen Shot 2023-07-05 at 12 20 27 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/c82664e0-88bd-4407-b10c-32daef1c7768">
 
 Next, allow GitHub actions to write to your repository. Go to your repository's settings
 
 <img width="309" alt="Screen Shot 2023-07-05 at 12 18 14 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/61ff3da9-d4ae-479e-9dee-31e84cba91dd">
-
+<br>
 <img width="770" alt="Screen Shot 2023-07-05 at 12 18 21 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/4d1da4a1-a39e-40f9-83fe-c864b2ec0940">
 
 The final step is to create secret variables for your repository:
 
 <img width="246" alt="Screen Shot 2023-07-05 at 12 44 40 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/60aa3862-8e1c-4ba8-939a-a4358ae342ca">
-
+<br>
 <img width="784" alt="Screen Shot 2023-07-05 at 12 18 48 AM" src="https://github.com/johnnyj2608/LootCouncil/assets/54607786/30a069a4-4c36-45b6-b7b9-5789313c777e">
 
 ### Docker (Optional):
