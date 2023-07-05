@@ -235,6 +235,6 @@ if __name__ == "__main__":
         today = date.today().strftime("%m-%d-%y")
         with open("Output/"+today+".txt", "w") as text_file:
             text_file.write(pp.pformat(res))
-    print("Created text file "+today+".txt")
+        print("Created text file "+today+".txt")
     print("Process finished --- %s seconds ---" % (time.time() - start_time))
     
