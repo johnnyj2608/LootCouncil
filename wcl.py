@@ -1,10 +1,16 @@
 import requests
 import os
+from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
 
 def header(link):
+    """
+    header uses cookies to bypass login for web scrape
+    :param report: the link (tmb)
+    :return: the response
+    """ 
     res = requests.get(link, cookies={os.getenv("tmb_key"):os.getenv("tmb_val")})
     if res.status_code == 200:
         return res
@@ -92,7 +98,7 @@ shadowQuery = """query($name:String) {
 
 def get_perf(**kwargs):
     """
-    get_perf gets raider's performance. Currently set to Ulduar (P2) performance
+    get_perf gets raider's performance
     :param name: the name of the raider
     :return: the best and median performance of the raider
     """ 
@@ -122,6 +128,7 @@ recentQuery = """query($guildID:Int){
                     reports(guildID: $guildID, zoneID: 1018, limit: 10){
                         data {
                             code
+                            startTime
                             fights (killType: Kills){
                                 size
                             }
@@ -131,11 +138,19 @@ recentQuery = """query($guildID:Int){
             }"""
 
 def get_recentReport(**kwargs):
+    """
+    get_recentReport gets the 10 most recent reports from guild ID
+    :param name: the guild ID
+    :return: the most recent 25M report
+    """ 
     try:
         response = get_data(recentQuery, **kwargs)['data']['reportData']['reports']['data']
     except:
         return 0
     for code in response:
         if code['fights'][0]['size'] == 25:
+            date = datetime.fromtimestamp(code['startTime']/1000)
+            if (datetime.now() - date).days > 14:
+                break
             return code['code']
     return 4

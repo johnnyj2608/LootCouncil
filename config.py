@@ -1,12 +1,13 @@
-def get_spreadsheet():
-    return '1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q'
+spreadsheet = '1TyYdcyq2_J5GT6rsIH9mNQgKWtoOa7bxDriMf8u1d5Q'
 
-def get_sheetID():
-    sheet_ID = {'physical':'594385335', 'caster':'1620926651', 'tank':'1031043128'}
-    return sheet_ID
+sheetID = {'physical':'594385335', 'caster':'1620926651', 'tank':'1031043128'}
 
+tmb = 'https://thatsmybis.com/15596/raid-team-two/export/loot/html/all'
+
+guildID = 695278
+
+# Ulduar prio (for my guild specifically)
 def update_prio(items):
-    # Ulduar prio (for my guild specifically)
     items['Pharos Gloves'] = [['Fire', 'Arcane'], ['Affliction', 'Demonology'], ['Balance', 'Shadow'], ['Elemental']]
     items['Flare of the Heavens'] = [['Affliciton', 'Demonology'], ['Fire', 'Arcane'], ['Balance', 'Shadow', 'Elemental']]
     items['Conductive Seal'] = [['Affliciton', 'Demonology'], ['Fire', 'Arcane', 'Shadow', 'Balance', 'Elemental'], ['Holy', 'Resto']]
@@ -20,9 +21,3 @@ def update_prio(items):
 
     items['Greaves of Ruthless Judgment'] = items.pop('Greaves of the Ruthless Judgment') # Misspelled in spreadsheet
     return items
-
-def get_tmb():
-    return 'https://thatsmybis.com/15596/raid-team-two/export/loot/html/all'
-
-def get_guildID():
-    return 695278

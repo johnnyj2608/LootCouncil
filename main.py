@@ -1,17 +1,15 @@
 import pandas as pd
 import pprint as pp
 import wcl
-import links
+import config
 import time
 from datetime import date
 from io import StringIO
 
 def main():
     items = {}
-    spreadsheet = links.get_spreadsheet()
-    sheet_ID = links.get_sheetID()
-    for sheet in sheet_ID:
-        res = spreadsheetPrio(spreadsheet, sheet_ID[sheet], items)
+    for sheet in config.sheetID:
+        res = spreadsheetPrio(config.spreadsheet, config.sheetID[sheet], items)
         if type(res) == int:
             return errorCodes(res)
     print('Retrieved spreadsheets')
@@ -42,14 +40,11 @@ def main():
                 temp[level].append('Demonology')
         temp = [[x for x in sub_list if x] for sub_list in temp] # Remove empty strings
         items[key] = [x for x in temp if x != []] # Remove empty lists
-    
     print('Parsed spreadsheet')
-
-    links.update_prio(items)
+    config.update_prio(items)
 
     # Create dict to store character info
-    tmb = links.get_tmb()
-    response = wcl.header(tmb)
+    response = wcl.header(config.tmb)
     if type(response) == int:
         return errorCodes(response)
     csvStringIO = StringIO(response.text)
@@ -71,7 +66,7 @@ def main():
     print('Created player information')
 
     # Intersect report's attendance with raider dict and get performance & spec
-    report = wcl.get_recentReport(guildID=links.get_guildID())
+    report = wcl.get_recentReport(guildID=config.guildID)
     print('Retrieved recent 25M report')
     if type(report) == int:
         return errorCodes(report)
@@ -214,6 +209,11 @@ def spreadsheetPrio(spreadsheet, sheet, priority):
     return
 
 def errorCodes(number):
+    """
+    Streamlining errors that can occur
+    :param spreadsheet: int, error codes
+    :return: the error message
+    """ 
     res = 'Error: '
     if number == 0:
         return 'Not a valid report code'
