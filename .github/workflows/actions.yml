@@ -23,6 +23,7 @@ jobs:
           
       - name: execute py script # run main.py
         env:
+          TZ: America/New_York
           client_id: ${{ secrets.CLIENT_ID }}
           client_secret: ${{ secrets.CLIENT_SECRET }}
           tmb_key: ${{ secrets.TMB_KEY }}
