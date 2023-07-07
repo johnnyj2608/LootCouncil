@@ -1,9 +1,10 @@
 name: run main.py
 
 on:
-  #workflow_dispatch:
+  
   schedule:
     - cron: '15 1 * * 2,4' # At 8:15 PM EST on Tues/Thurs
+  workflow_dispatch:
 
 jobs:
   build:
