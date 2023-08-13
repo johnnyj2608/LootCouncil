@@ -18,6 +18,7 @@ def update_prio(items):
     items['Seal of the Betrayed King'] = [['Frost']]
     items['Sabatons of Lifeless Night'] = [['Unholy']]
     items['Crown of Luminescence'] = [['Holy']]
+    items['Frigid Strength of Hodir'] = [['Frost']]
 
     items['Greaves of Ruthless Judgment'] = items.pop('Greaves of the Ruthless Judgment') # Misspelled in spreadsheet
     return items
