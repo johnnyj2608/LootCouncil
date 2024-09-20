@@ -6,6 +6,9 @@ A Python script that aggregates data from public websites and computes reward as
 
 Built with Python. Utilized Pandas library to parse web-scraped data and GraphQL to query Warcraft Log’s API. I also used pretty print and print libraries to output the result to a text file
 
+### Demo Video
+[![Watch the demo](https://img.youtube.com/vi/STeGI4txP7M/0.jpg)](https://www.youtube.com/watch?v=STeGI4txP7M)
+
 ## Installation and Setup Instructions
 
 Clone down this repository. You will need `VS Code` installed globally on your machine.
